@@ -65,7 +65,7 @@ module NMIGateway
       post query
     end
 
-    # NMIGateway::Transaction.new.find transactionid: 3261844010
+    # NMIGateway::Transaction.new.find transaction_id: 3261844010
     def find(options = {})
       query = set_query(options)
       query[:report_type] ||= 'transaction'

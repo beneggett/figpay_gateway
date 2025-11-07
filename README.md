@@ -186,7 +186,7 @@ Retrieve transaction details:
 
 ```ruby
 details = FigpayGateway::Transaction.new.find(
-  transactionid: '3261844010'
+  transaction_id: '3261844010'
 )
 ```
 
