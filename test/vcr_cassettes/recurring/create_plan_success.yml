@@ -1,0 +1,85 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&day_of_month=1&month_frequency=1&payment=creditcard&plan_amount=29.99&plan_id=test-plan-test1-1761772378322756&plan_name=Test%20Monthly%20Plan&plan_payments=0&recurring=add_plan&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&test_mode=enabled&type=recurring
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Oct 2025 21:12:58 GMT
+      Vary:
+      - X-Unique-Id
+      Content-Type:
+      - text/html; charset=UTF-8
+      X-Envoy-Upstream-Service-Time:
+      - '515'
+      Set-Cookie:
+      - '068303=Dd/vAZ509sCkg4wxDO7XtUw4f5j7C1F8Av06fFOlUrRTwMm6rbn/PkwS0JpK6ij8h366w4Jrdney8px+L0SmTPABDpI3bqtbyMCVqkGNYaqBsqqWLuki72gor3gwkF6ZHoYfrBB1qxpNoZv5Zyo5sfwfcCAKNI/RUML9s51yoTxEws7w;
+        path=/'
+      X-Volterra-Location:
+      - wes-sea
+      Server:
+      - volt-adc
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: response=1&responsetext=Plan Added&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=recurring&response_code=100
+  recorded_at: Wed, 29 Oct 2025 21:12:59 GMT
+- request:
+    method: get
+    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&day_of_month=1&month_frequency=1&payment=creditcard&plan_amount=29.99&plan_id=test-plan-test1-17617726140237901&plan_name=Test%20Monthly%20Plan&plan_payments=0&recurring=add_plan&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&test_mode=enabled&type=recurring
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Oct 2025 21:16:54 GMT
+      Vary:
+      - X-Unique-Id
+      Content-Type:
+      - text/html; charset=UTF-8
+      X-Envoy-Upstream-Service-Time:
+      - '572'
+      Set-Cookie:
+      - '068303=PfMOo7PDeMfFrDmzUSsf5JH1VXdezmV7nbEyDJ/MAq270pkY8yExSTwYhjzYxftV8RIfrkR4vUH48kqRL6b4OZRwUWwJXI9PZPs5V6KiQtw+I+3jnfDf+eUxCscb0dGPMZL6os/YcxlbKmPA0yXHbMWOZVuljouABfcCvisEBprMccE7;
+        path=/'
+      X-Volterra-Location:
+      - wes-sea
+      Server:
+      - volt-adc
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: response=1&responsetext=Plan Added&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=recurring&response_code=100
+  recorded_at: Wed, 29 Oct 2025 21:16:54 GMT
+recorded_with: VCR 6.3.1

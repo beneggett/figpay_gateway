@@ -1,0 +1,126 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://figpay.transactiongateway.com/api/transact.php?address1=456%20Oak%20Ave&ccexp=1225&ccnumber=4111111111111111&city=Los%20Angeles&country=US&currency=USD&customer_vault=add_customer&cvv=999&email=jane@example.com&first_name=Jane&last_name=Smith&payment=creditcard&phone=555-555-1234&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&state=CA&test_mode=enabled&zip=90001
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Oct 2025 21:13:08 GMT
+      Vary:
+      - X-Unique-Id
+      Content-Type:
+      - text/html; charset=UTF-8
+      X-Envoy-Upstream-Service-Time:
+      - '501'
+      Set-Cookie:
+      - '068303=OOh6bKSMwUqx0Vfaq+DFCdCPFelhlHPBkXqB3SuHxAI7nbX0Jwm+e7qnqJjun9Jt6CZcs6CTpvVMcdOiJrjZ89iTSXGEXwElZrMoE7yAXEiqRHM/EeRBfznt1Uc2mvwFo8pmtCo/oVkOaLxJKRGabzHfA62VmdwmcA3TWHaQc8V20Yff;
+        path=/'
+      X-Volterra-Location:
+      - wes-sea
+      Server:
+      - volt-adc
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: response=1&responsetext=Customer Added&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=&response_code=100&customer_vault_id=1068224659
+  recorded_at: Wed, 29 Oct 2025 21:13:08 GMT
+- request:
+    method: get
+    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&customer_vault=update_customer&customer_vault_id=1068224659&email=jane.smith@example.com&first_name=Jane&last_name=Doe-Smith&payment=creditcard&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&test_mode=enabled
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Oct 2025 21:13:08 GMT
+      Vary:
+      - X-Unique-Id
+      Content-Type:
+      - text/html; charset=UTF-8
+      X-Envoy-Upstream-Service-Time:
+      - '596'
+      Set-Cookie:
+      - '068303=9uks0l1SBJDqqVjucZAK7aemSHOb3HSjHnDrSKgHSv9hrCB6mK3BluNChmUInbRoXKotfkvNa76NdG+3VEVywXine2VSCHOFeqeaT1BQX/ffKcyeaZeFx4IcgsN0Wz2G8fB+BWuVwTs590NB6W3/UDrw8Twt8fawxO1loCWBzh+fBjPm;
+        path=/'
+      X-Volterra-Location:
+      - wes-sea
+      Server:
+      - volt-adc
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: response=1&responsetext=Customer Update Successful&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=&response_code=100&customer_vault_id=1068224659
+  recorded_at: Wed, 29 Oct 2025 21:13:09 GMT
+- request:
+    method: get
+    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&customer_vault=delete_customer&customer_vault_id=1068224659&payment=creditcard&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&test_mode=enabled
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Oct 2025 21:13:09 GMT
+      Vary:
+      - X-Unique-Id
+      Content-Type:
+      - text/html; charset=UTF-8
+      X-Envoy-Upstream-Service-Time:
+      - '502'
+      Set-Cookie:
+      - '068303=fZSLcD+tNRMGjTwSRnJZEurjIKvLf/3UyJU0KrAtP1dpzRiOb3YUOd0g4PLtqZzhZ4rU0B+4b3Y1YirRybd+Ww6QxFyzqYGn8+vZdnZPHjGdPIIAsZ5txkH8Y7sYEyCwR73/ctqdt3QrJ0rLWGGtDveSN8Gc9j3r323OcVBVWDypoiYq;
+        path=/'
+      X-Volterra-Location:
+      - wes-sea
+      Server:
+      - volt-adc
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: response=1&responsetext=Customer Deleted&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=&response_code=100
+  recorded_at: Wed, 29 Oct 2025 21:13:09 GMT
+recorded_with: VCR 6.3.1

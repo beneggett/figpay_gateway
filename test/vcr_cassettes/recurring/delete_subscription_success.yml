@@ -1,0 +1,167 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://figpay.transactiongateway.com/api/transact.php?address1=456%20Oak%20Ave&ccexp=1225&ccnumber=4111111111111111&city=Los%20Angeles&country=US&currency=USD&customer_vault=add_customer&cvv=999&email=jane@example.com&first_name=Jane&last_name=Smith&payment=creditcard&phone=555-555-1234&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&state=CA&test_mode=enabled&zip=90001
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Oct 2025 21:12:50 GMT
+      Vary:
+      - X-Unique-Id
+      Content-Type:
+      - text/html; charset=UTF-8
+      X-Envoy-Upstream-Service-Time:
+      - '509'
+      Set-Cookie:
+      - '068303=yCF6HAu6kD+xbeU/g/h20uxoe3VmtasvInBF0puzupZToGoodoWe+75RDELN5nV7Ih7BSmSU8Byl/yhjoRWvGaAOY6wFUswdxqw1a+6iC27InTI65g7pGtPt9xzMkWoIn+AKkhkwiJoBCg3p/dkS5LVYH3fmJwMuoOtnh9UZDtOTMcQK;
+        path=/'
+      X-Volterra-Location:
+      - wes-sea
+      Server:
+      - volt-adc
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: response=1&responsetext=Customer Added&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=&response_code=100&customer_vault_id=1579720004
+  recorded_at: Wed, 29 Oct 2025 21:12:50 GMT
+- request:
+    method: get
+    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&customer_vault_id=1579720004&day_of_month=15&month_frequency=1&payment=creditcard&plan_amount=19.99&plan_payments=0&recurring=add_subscription&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&test_mode=enabled&type=recurring
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Oct 2025 21:12:51 GMT
+      Vary:
+      - X-Unique-Id
+      Content-Type:
+      - text/html; charset=UTF-8
+      X-Envoy-Upstream-Service-Time:
+      - '693'
+      Set-Cookie:
+      - '068303=HbFzP1Sz0zNqPQU5BOyWMWZwTHLWuouNeG176W7SaQI9/jTZkFFM+cTVoxFtAvW3E0ktNf9IE9+JMw5j6pePkKS8zZust9ossdsQd+5NnDllqRRA5FdkaRT8mXGjkIWG/S2QT+WErrRfbPO88oMuJ1rmYMtMLFhzosGtLbWk4tNYPET8;
+        path=/'
+      X-Volterra-Location:
+      - wes-sea
+      Server:
+      - volt-adc
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: response=1&responsetext=Subscription added&authcode=&transactionid=11304358536&avsresponse=&cvvresponse=&orderid=&type=recurring&response_code=100&customer_vault_id=1579720004&subscription_id=11304358536
+  recorded_at: Wed, 29 Oct 2025 21:12:51 GMT
+- request:
+    method: get
+    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&payment=creditcard&recurring=delete_subscription&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&subscription_id=11304358536&test_mode=enabled&type=recurring
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Oct 2025 21:12:52 GMT
+      Vary:
+      - X-Unique-Id
+      Content-Type:
+      - text/html; charset=UTF-8
+      X-Envoy-Upstream-Service-Time:
+      - '407'
+      Set-Cookie:
+      - '068303=d6nXwHhr9wwp5wJEsEWVnUmMgjcHt1zMOQ+0m2G826ok3mXVrKXi3wXagDBeMpuZimp8+/eAaaPo/kzUsdcciznuWE/Oan0TEqbj48vEXBwpgSyG5E51QGU407lxcwsWCIK1WGVvqniP5vz5QJWzgksFQnhDxfCg6EseY+RERMZMrRFV;
+        path=/'
+      X-Volterra-Location:
+      - wes-sea
+      Server:
+      - volt-adc
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: response=1&responsetext=Recurring Transaction Deleted&authcode=&transactionid=11304358536&avsresponse=&cvvresponse=&orderid=&type=recurring&response_code=100&subscription_id=11304358536
+  recorded_at: Wed, 29 Oct 2025 21:12:52 GMT
+- request:
+    method: get
+    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&customer_vault=delete_customer&customer_vault_id=1579720004&payment=creditcard&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&test_mode=enabled
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Oct 2025 21:12:52 GMT
+      Vary:
+      - X-Unique-Id
+      Content-Type:
+      - text/html; charset=UTF-8
+      X-Envoy-Upstream-Service-Time:
+      - '475'
+      Set-Cookie:
+      - '068303=eFtLHCkQ0aL/Gs1EyK+IY6rwqAHFFuhhqUZixUWjmCieriejmElqnUezuYatrg8wzktr12qkTDwlptBpEIgdKxU3LfwMkNyiM7vjE19VqqIGD2VnLkT4kznRFf1HyN/ogjEzjUQpHIgXtrKQeg5FGxxObchF6IXqwgiA/Jh8zezWM3b2;
+        path=/'
+      X-Volterra-Location:
+      - wes-sea
+      Server:
+      - volt-adc
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: response=1&responsetext=Customer Deleted&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=&response_code=100
+  recorded_at: Wed, 29 Oct 2025 21:12:53 GMT
+recorded_with: VCR 6.3.1

@@ -1,0 +1,330 @@
+#!/usr/bin/env ruby
+require "pry"
+require 'bundler/setup'
+require 'figpay_gateway'
+require 'dotenv'
+Dotenv.load
+
+# Use demo credentials if not set
+ENV['NMI_SECURITY_KEY'] ||= '6457Thfj624V5r7WUwc5v6a68Zsd6YEm'
+
+puts "=" * 80
+puts "FigPay Gateway - Comprehensive Method Test"
+puts "=" * 80
+puts "Using Security Key: #{ENV['NMI_SECURITY_KEY'][0..10]}..."
+puts "=" * 80
+puts
+
+# Store results
+results = {}
+customer_vault_id = nil
+subscription_id = nil
+transaction_id = nil
+auth_transaction_id = nil
+
+# Helper method to display results
+def display_result(name, result)
+  puts "\n#{'-' * 80}"
+  puts "Test: #{name}"
+
+  if result.success?
+    puts "Status: ✓ SUCCESS"
+    puts "Response Code: #{result.response_code}" if result.respond_to?(:response_code)
+    puts "Response Message: #{result.response_message}" if result.respond_to?(:response_message) && result.response_message
+    puts "Transaction ID: #{result.transactionid}" if result.respond_to?(:transactionid) && result.transactionid
+    puts "Customer Vault ID: #{result.customer_vault_id}" if result.respond_to?(:customer_vault_id) && result.customer_vault_id
+    puts "Subscription ID: #{result.subscription_id}" if result.respond_to?(:subscription_id) && result.subscription_id
+    puts "Auth Code: #{result.authcode}" if result.respond_to?(:authcode) && result.authcode
+    puts "Response: #{result.response}" if result.respond_to?(:response) && result.response
+  else
+    puts "Status: ✗ FAILED"
+    puts "Error: #{result.response_text}" if result.respond_to?(:response_text)
+    puts "Response Code: #{result.response_code}" if result.respond_to?(:response_code)
+    puts "Response Message: #{result.response_message}" if result.respond_to?(:response_message) && result.response_message
+    puts "Response: #{result.response}" if result.respond_to?(:response) && result.response
+  end
+
+  puts "-" * 80
+  result
+end
+
+puts "\n### TRANSACTION TESTS ###\n"
+
+# Test 1: Validate Card
+puts "\n1. Testing Card Validation..."
+result = FigpayGateway::Transaction.new.validate(
+  ccnumber: '4111111111111111',
+  ccexp: '1225',
+  first_name: 'John',
+  last_name: 'Doe',
+  email: 'john@example.com'
+)
+results[:validate] = display_result("Card Validation", result)
+
+# Test 2: Sale Transaction
+puts "\n2. Testing Sale Transaction..."
+result = FigpayGateway::Transaction.new.sale(
+  ccnumber: '4111111111111111',
+  ccexp: '1225',
+  cvv: '999',
+  amount: 10.00,
+  first_name: 'John',
+  last_name: 'Doe',
+  address1: '123 Main St',
+  city: 'Beverly Hills',
+  state: 'CA',
+  zip: '90210',
+  country: 'US',
+  email: 'john@example.com'
+)
+results[:sale] = display_result("Sale Transaction", result)
+transaction_id = result.transactionid if result.success? && result.respond_to?(:transactionid)
+
+# Test 3: Authorization
+puts "\n3. Testing Authorization..."
+result = FigpayGateway::Transaction.new.authorize(
+  ccnumber: '4111111111111111',
+  ccexp: '1225',
+  amount: 25.00,
+  first_name: 'John',
+  last_name: 'Doe',
+  email: 'john@example.com'
+)
+results[:authorize] = display_result("Authorization", result)
+auth_transaction_id = result.transactionid if result.success? && result.respond_to?(:transactionid)
+
+# Test 4: Capture (if authorization succeeded)
+if auth_transaction_id
+  puts "\n4. Testing Capture..."
+  result = FigpayGateway::Transaction.new.capture(
+    transactionid: auth_transaction_id,
+    amount: 25.00
+  )
+  results[:capture] = display_result("Capture", result)
+else
+  puts "\n4. Skipping Capture (no auth transaction ID)"
+end
+
+# Test 5: Credit (Standalone)
+puts "\n5. Testing Standalone Credit..."
+result = FigpayGateway::Transaction.new.credit(
+  ccnumber: '4111111111111111',
+  ccexp: '1225',
+  amount: 5.00,
+  first_name: 'John',
+  last_name: 'Doe',
+  email: 'john@example.com'
+)
+results[:credit] = display_result("Standalone Credit", result)
+
+# Test 6: Find Transaction (if we have a transaction ID)
+if transaction_id
+  puts "\n6. Testing Transaction Query..."
+  result = FigpayGateway::Transaction.new.find(
+    transactionid: transaction_id
+  )
+  results[:find_transaction] = display_result("Transaction Query", result)
+else
+  puts "\n6. Skipping Transaction Query (no transaction ID)"
+end
+
+# Test 7: Update Transaction (if we have a transaction ID)
+if transaction_id
+  puts "\n7. Testing Transaction Update..."
+  result = FigpayGateway::Transaction.new.update(
+    transactionid: transaction_id,
+    orderid: 'TEST-ORDER-123',
+    order_description: 'Test order updated'
+  )
+  results[:update_transaction] = display_result("Transaction Update", result)
+else
+  puts "\n7. Skipping Transaction Update (no transaction ID)"
+end
+
+# Test 8: Refund (if we have a transaction ID)
+if transaction_id
+  puts "\n8. Testing Refund..."
+  result = FigpayGateway::Transaction.new.refund(
+    transactionid: transaction_id,
+    amount: 5.00
+  )
+  results[:refund] = display_result("Refund", result)
+else
+  puts "\n8. Skipping Refund (no transaction ID)"
+end
+
+# Test 9: Void (create a new transaction to void)
+puts "\n9. Testing Void..."
+void_result = FigpayGateway::Transaction.new.sale(
+  ccnumber: '4111111111111111',
+  ccexp: '1225',
+  amount: 1.00,
+  first_name: 'John',
+  last_name: 'Doe',
+  email: 'john@example.com'
+)
+if void_result.success? && void_result.respond_to?(:transactionid)
+  result = FigpayGateway::Transaction.new.void(
+    transactionid: void_result.transactionid
+  )
+  results[:void] = display_result("Void Transaction", result)
+else
+  puts "Skipping Void (could not create transaction to void)"
+end
+
+puts "\n\n### CUSTOMER VAULT TESTS ###\n"
+
+# Test 10: Create Customer
+puts "\n10. Testing Customer Vault Create..."
+result = FigpayGateway::CustomerVault.new.create(
+  ccnumber: '4111111111111111',
+  ccexp: '1225',
+  cvv: '999',
+  first_name: 'Jane',
+  last_name: 'Smith',
+  address1: '456 Oak Ave',
+  city: 'Los Angeles',
+  state: 'CA',
+  zip: '90001',
+  email: 'jane@example.com'
+)
+results[:create_customer] = display_result("Create Customer", result)
+customer_vault_id = result.customer_vault_id if result.success? && result.respond_to?(:customer_vault_id)
+
+# Test 11: Update Customer (if we have a customer vault ID)
+if customer_vault_id
+  puts "\n11. Testing Customer Vault Update..."
+  result = FigpayGateway::CustomerVault.new.update(
+    customer_vault_id: customer_vault_id,
+    first_name: 'Jane',
+    last_name: 'Doe-Smith',
+    email: 'jane.smith@example.com'
+  )
+  results[:update_customer] = display_result("Update Customer", result)
+else
+  puts "\n11. Skipping Customer Update (no customer vault ID)"
+end
+
+# Test 12: Find Customer (if we have a customer vault ID)
+if customer_vault_id
+  puts "\n12. Testing Customer Vault Query..."
+  result = FigpayGateway::CustomerVault.new.find(
+    customer_vault_id: customer_vault_id
+  )
+  results[:find_customer] = display_result("Find Customer", result)
+else
+  puts "\n12. Skipping Customer Query (no customer vault ID)"
+end
+
+# Test 13: Charge Vaulted Customer (if we have a customer vault ID)
+if customer_vault_id
+  puts "\n13. Testing Charge Vaulted Customer..."
+  result = FigpayGateway::Transaction.new.sale(
+    customer_vault_id: customer_vault_id,
+    amount: 15.00,
+    orderid: 'VAULT-ORDER-456'
+  )
+  results[:charge_vaulted] = display_result("Charge Vaulted Customer", result)
+else
+  puts "\n13. Skipping Charge Vaulted Customer (no customer vault ID)"
+end
+
+puts "\n\n### RECURRING BILLING TESTS ###\n"
+
+# Test 14: Create Billing Plan
+puts "\n14. Testing Create Billing Plan..."
+result = FigpayGateway::Recurring.new.create_plan(
+  plan_id: "test-plan-#{Time.now.to_i}",
+  plan_name: 'Test Monthly Plan',
+  plan_amount: 29.99,
+  month_frequency: 1,
+  day_of_month: 1
+)
+results[:create_plan] = display_result("Create Billing Plan", result)
+plan_id = result.plan_id if result.success? && result.respond_to?(:plan_id)
+
+# Test 15: Add Subscription to Plan (if we have both plan and customer)
+if plan_id && customer_vault_id
+  puts "\n15. Testing Subscribe Customer to Plan..."
+  result = FigpayGateway::Recurring.new.add_subscription_to_plan(
+    plan_id: plan_id,
+    customer_vault_id: customer_vault_id
+  )
+  results[:add_subscription] = display_result("Subscribe to Plan", result)
+  subscription_id = result.subscription_id if result.success? && result.respond_to?(:subscription_id)
+elsif !plan_id
+  puts "\n15. Skipping Subscribe to Plan (no plan ID)"
+elsif !customer_vault_id
+  puts "\n15. Skipping Subscribe to Plan (no customer vault ID)"
+end
+
+# Test 16: Create Custom Subscription (if we have customer vault ID)
+if customer_vault_id && !subscription_id
+  puts "\n16. Testing Create Custom Subscription..."
+  result = FigpayGateway::Recurring.new.add_custom_subscription(
+    customer_vault_id: customer_vault_id,
+    plan_amount: 19.99,
+    month_frequency: 1,
+    day_of_month: 15
+  )
+  results[:custom_subscription] = display_result("Create Custom Subscription", result)
+  subscription_id = result.subscription_id if result.success? && result.respond_to?(:subscription_id)
+else
+  puts "\n16. Skipping Custom Subscription (no customer or already subscribed)"
+end
+
+# Test 17: Update Subscription (if we have subscription ID)
+if subscription_id
+  puts "\n17. Testing Update Subscription..."
+  result = FigpayGateway::Recurring.new.update_subscription(
+    subscription_id: subscription_id,
+    plan_amount: 24.99
+  )
+  results[:update_subscription] = display_result("Update Subscription", result)
+else
+  puts "\n17. Skipping Update Subscription (no subscription ID)"
+end
+
+# Test 18: Cancel Subscription (if we have subscription ID)
+if subscription_id
+  puts "\n18. Testing Cancel Subscription..."
+  result = FigpayGateway::Recurring.new.delete_subscription(
+    subscription_id: subscription_id
+  )
+  results[:delete_subscription] = display_result("Cancel Subscription", result)
+else
+  puts "\n18. Skipping Cancel Subscription (no subscription ID)"
+end
+
+# Test 19: Delete Customer (if we have customer vault ID)
+if customer_vault_id
+  puts "\n19. Testing Delete Customer..."
+  result = FigpayGateway::CustomerVault.new.destroy(
+    customer_vault_id: customer_vault_id
+  )
+  results[:delete_customer] = display_result("Delete Customer", result)
+else
+  puts "\n19. Skipping Delete Customer (no customer vault ID)"
+end
+
+# Summary
+puts "\n\n"
+puts "=" * 80
+puts "TEST SUMMARY"
+puts "=" * 80
+
+successful = results.select { |k, v| v.success? }.count
+total = results.count
+
+puts "Total Tests Run: #{total}"
+puts "Successful: #{successful}"
+puts "Failed: #{total - successful}"
+puts "\nSuccess Rate: #{(successful.to_f / total * 100).round(2)}%"
+
+puts "\nDetailed Results:"
+results.each do |name, result|
+  status = result.success? ? "✓ PASS" : "✗ FAIL"
+  puts "  #{status} - #{name}"
+end
+
+puts "=" * 80

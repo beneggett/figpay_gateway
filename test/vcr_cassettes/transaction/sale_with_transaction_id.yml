@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://figpay.transactiongateway.com/api/transact.php?address1=123%20Main%20St&amount=10.0&ccexp=1225&ccnumber=4111111111111111&city=Beverly%20Hills&country=US&currency=USD&cvv=999&email=john@example.com&first_name=John&last_name=Doe&payment=creditcard&phone=555-555-5555&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&state=CA&test_mode=enabled&type=sale&zip=90210
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Oct 2025 21:12:30 GMT
+      Vary:
+      - X-Unique-Id
+      Content-Type:
+      - text/html; charset=UTF-8
+      X-Envoy-Upstream-Service-Time:
+      - '1385'
+      Set-Cookie:
+      - '068303=WF4G3wH4nbCWT/OwRQYd+J+hLTFrN6Q2BWJ6vauoczves4pLUTJDLHYnHjls5eSSnamLkHjgxULaUyGSHFNiTZy5VPD09GStsVJOFDKTIodEgsZxpaMFq55sphyQ5u153Y8vLxs95N+YhowATeG6vyIALxwozt8DAWPfjnpss1wu7VYh;
+        path=/'
+      X-Volterra-Location:
+      - wes-sea
+      Server:
+      - volt-adc
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: response=1&responsetext=SUCCESS&authcode=123456&transactionid=11304357318&avsresponse=N&cvvresponse=M&orderid=&type=sale&response_code=100
+  recorded_at: Wed, 29 Oct 2025 21:12:31 GMT
+recorded_with: VCR 6.3.1

@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://figpay.transactiongateway.com/api/transact.php?ccexp=1225&ccnumber=4111111111111111&currency=USD&cvv=999&email=john@example.com&first_name=John&last_name=Doe&payment=creditcard&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&test_mode=enabled&type=validate
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Oct 2025 21:13:14 GMT
+      Vary:
+      - X-Unique-Id
+      Content-Type:
+      - text/html; charset=UTF-8
+      X-Envoy-Upstream-Service-Time:
+      - '1821'
+      Set-Cookie:
+      - '068303=UqudJyJDXWCch6vcl59uw4JuKj3TGE0lNZ/h3XeNH9xztKGp21jQZWYVeEtmABo/0iqug5uEDmxtHWe+/AzHSp/EjVXje0Db0rpYBU9RYqZUFx699yrBic24EEj4WnE3IEXMCrz+ISGcuDNhX1xMqgDmZqU/vK7ZAjp9zGBTa+CpjI9U;
+        path=/'
+      X-Volterra-Location:
+      - wes-sea
+      Server:
+      - volt-adc
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: response=1&responsetext=SUCCESS&authcode=&transactionid=11304359753&avsresponse=&cvvresponse=M&orderid=&type=validate&response_code=100
+  recorded_at: Wed, 29 Oct 2025 21:13:16 GMT
+recorded_with: VCR 6.3.1

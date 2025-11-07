@@ -1,0 +1,85 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://figpay.transactiongateway.com/api/transact.php?address1=123%20Main%20St&amount=10.0&ccexp=1225&ccnumber=4111111111111111&city=Beverly%20Hills&country=US&currency=USD&cvv=999&email=john@example.com&first_name=John&last_name=Doe&payment=creditcard&phone=555-555-5555&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&state=CA&test_mode=enabled&type=sale&zip=90210
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Oct 2025 21:12:12 GMT
+      Vary:
+      - X-Unique-Id
+      Content-Type:
+      - text/html; charset=UTF-8
+      X-Envoy-Upstream-Service-Time:
+      - '1310'
+      Set-Cookie:
+      - '068303=RKrG5ley8yQ2SU4HNJw/2H4P8KbZOiGdo2U/OSej1tP2Rjg78AOQiz24qniThiNaWfhw2BqHTblbtz856JJa9UHLeUzkH3+aQjRKd9/0dlQUY5bDYslXK8bAn+fuEAy7/xjkJZ30nQ+sd7+77hF/em8Zlt7fBrey64rGiZ2gOBOa1yUy;
+        path=/'
+      X-Volterra-Location:
+      - wes-sea
+      Server:
+      - volt-adc
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: response=1&responsetext=SUCCESS&authcode=123456&transactionid=11304356325&avsresponse=N&cvvresponse=M&orderid=&type=sale&response_code=100
+  recorded_at: Wed, 29 Oct 2025 21:12:13 GMT
+- request:
+    method: get
+    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&order_description=Test%20order%20updated&orderid=TEST-ORDER-123&payment=creditcard&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&test_mode=enabled&transactionid=11304356325&type=update
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Oct 2025 21:12:14 GMT
+      Vary:
+      - X-Unique-Id
+      Content-Type:
+      - text/html; charset=UTF-8
+      X-Envoy-Upstream-Service-Time:
+      - '583'
+      Set-Cookie:
+      - '068303=oYCmhHKmojQ7RP6CLR39/Gbep9uk7Zs68rpxNZScTOW3l+CVAH7M+ZVAcCfA+oGmTLQuB50FcKHR+EB4mXSS0N3fEHYiHMgcTqRJo60fV3+C/ofsoYFDq+5H4svYFCkJOdDcoxl9nthkbptgrLeVWtUW6EhMHDVZLtmJakcxH3Tv153Y;
+        path=/'
+      X-Volterra-Location:
+      - wes-sea
+      Server:
+      - volt-adc
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: response=1&responsetext=&authcode=123456&transactionid=11304356325&avsresponse=&cvvresponse=&orderid=TEST-ORDER-123&type=update&response_code=100
+  recorded_at: Wed, 29 Oct 2025 21:12:14 GMT
+recorded_with: VCR 6.3.1

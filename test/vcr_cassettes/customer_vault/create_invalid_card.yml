@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://figpay.transactiongateway.com/api/transact.php?address1=456%20Oak%20Ave&ccexp=1225&ccnumber=4111111111111112&city=Los%20Angeles&country=US&currency=USD&customer_vault=add_customer&cvv=999&email=jane@example.com&first_name=Jane&last_name=Smith&payment=creditcard&phone=555-555-1234&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&state=CA&test_mode=enabled&zip=90001
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Oct 2025 21:12:49 GMT
+      Vary:
+      - X-Unique-Id
+      Content-Type:
+      - text/html; charset=UTF-8
+      X-Envoy-Upstream-Service-Time:
+      - '468'
+      Set-Cookie:
+      - '068303=Y9+HRx3MPeSPwS7eNQnngnwvcqKkjAnlQ9A/1s7UDvH4RkUZ2Y51UCHC5QUm0sPdw1S4fEl74yxz3cN2XjvE7NG4/xWhSV0L0TSx+2jpAReyItYVp1WMPlm16q+xOgTpB5Vx3sn+x/TGQK4xk9y6FgQ+WAZEDCi0j813Jq6DnWgpL2Z3;
+        path=/'
+      X-Volterra-Location:
+      - wes-sea
+      Server:
+      - volt-adc
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: response=3&responsetext=Invalid Credit Card Number REFID:580719218&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=&response_code=300
+  recorded_at: Wed, 29 Oct 2025 21:12:49 GMT
+recorded_with: VCR 6.3.1
