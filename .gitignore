@@ -17,7 +17,7 @@ mkmf.log
 
 .DS_Store
 .env
-.ruby-version
+# .ruby-version # used in ci.yml
 .ruby-gemset
 
 # Editor tags files
