@@ -1,7 +1,7 @@
 module NMIGateway
   class Response
 
-    attr_accessor  :response, :success, :code, :api_type, :transactions, :customers, :response_text, :response_message, :customer_vault_id, :subscription_id, :plan_id, :plan_amount, :orderid, :transactionid, :authcode, :response_code
+    attr_accessor  :response, :success, :code, :api_type, :transactions, :customers, :response_text, :response_message, :customer_vault_id, :subscription_id, :plan_id, :plan_amount, :orderid, :transactionid, :authcode, :response_code, :avs_response_code, :cvv_response_code, :response_code_message, :avs_response_code_message, :cvv_response_code_message
 
     def initialize(response, api_type)
       @response = response
@@ -39,6 +39,11 @@ module NMIGateway
           @subscription_id = parsed['subscription_id'].first if parsed['subscription_id'].first.present?
           @orderid = parsed['orderid'].first if parsed['orderid'].first.present?
           @transactionid = parsed['transactionid'].first if parsed['transactionid'].first.present?
+          @avs_response_code = parsed['avsresponse'].first if parsed['avsresponse']&.first.present?
+          @cvv_response_code = parsed['cvvresponse'].first if parsed['cvvresponse']&.first.present?
+          @response_code_message = response_codes.dig(response_code) if response_code.present?
+          @avs_response_code_message = avs_response_codes.dig(avs_response_code) if avs_response_code.present?
+          @cvv_response_code_message = cvv_response_codes.dig(cvv_response_code) if cvv_response_code.present?
           parsed
         end
       else
