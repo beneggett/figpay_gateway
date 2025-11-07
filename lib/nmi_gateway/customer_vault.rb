@@ -5,8 +5,11 @@ module NMIGateway
     def create(options = {})
       query = set_query(options)
       query[:customer_vault] = 'add_customer'
-
-      require_fields(:ccnumber, :ccexp)
+      if query[:payment_token]
+        require_fields(:payment_token, :first_name, :last_name)
+      else
+        require_fields(:ccnumber, :ccexp, :first_name, :last_name)
+      end
       post query
     end
 
