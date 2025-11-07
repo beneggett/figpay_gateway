@@ -86,6 +86,17 @@ The FigPay Gateway library is organized around three main API sets:
 
 Process credit card transactions including sales, authorizations, captures, and refunds.
 
+#### Recommendation - use collect.js to tokenize cards client side
+
+The payment gateway supports credit card tokenization via [Collect.js](https://figpay.transactiongateway.com//merchants/resources/integration/integration_portal.php#cjs_methodology). The benefit of this approach is that sensitive PCI information will be submitted directly to payment processor servers, they will return a token that you would send back to your servers, and reduce the PCI SAQ compliance requirements from SAQ-C or SAQ-D to SAQ-A. This greatly simplifies compliance, as no credit information would ever touch your logs or servers.
+
+Test Token example: `00000000-000000-000000-000000000000`
+This is tied to a test card: `Card: 4111111111111111, Expiration: October 2025, CVV: 999`
+
+Usage, in all examples, rather than passing in `ccnumber` and `ccexp`, these can be updated to use the token obtained via Collect.js and passed in as a `payment_token` param instead.
+
+There is a Test Public Key that can be used with Collect.js: `48r3R6-M39Jx5-467srN-VWVbD3`
+
 #### Create a Sale
 
 Process a direct sale (authorization and capture combined):
