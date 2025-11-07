@@ -2,6 +2,7 @@ module NMIGateway
   class CustomerVault < Api
 
     # NMIGateway::CustomerVault.new.create ccnumber: '4111111111111111', ccexp: "0219", first_name: "John", last_name: "Doe"
+    # NMIGateway::CustomerVault.new.create payment_token: "00000000-000000-000000-000000000000", first_name: "John", last_name: "Doe"
     def create(options = {})
       query = set_query(options)
       query[:customer_vault] = 'add_customer'

@@ -67,6 +67,9 @@ module NMIGateway
       query[:ccexp]                        = options[:ccexp] # FORMAT MMYY
       query[:cvv]                          = options[:cvv] # Recommended
 
+      # Payment Token
+      query[:payment_token]                = options[:payment_token] # from Collect.js
+
       # Payment
       query[:amount]                       = options[:amount]
       query[:currency]                     = options[:currency] || 'USD'
@@ -83,7 +86,7 @@ module NMIGateway
       # Recurring Billing
       query[:recurring]                    = options[:recurring ] # add_subscription
       query[:plan_id]                      = options [:plan_id]
-      query[:plan_name]                      = options [:plan_name]
+      query[:plan_name]                    = options [:plan_name]
       query[:plan_payments]                = options [:plan_payments] # 0 until canceled
       query[:plan_amount]                  = options [:plan_amount]
       query[:day_frequency]                = options [:day_frequency]
