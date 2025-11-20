@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://figpay.transactiongateway.com/api/transact.php?address1=456%20Oak%20Ave&ccexp=1225&ccnumber=4111111111111111&city=Los%20Angeles&country=US&currency=USD&customer_vault=add_customer&cvv=999&email=jane@example.com&first_name=Jane&last_name=Smith&payment=creditcard&phone=555-555-1234&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&state=CA&test_mode=enabled&zip=90001
+    uri: https://figpay.transactiongateway.com/api/transact.php?address1=456%20Oak%20Ave&ccexp=1025&ccnumber=<CREDIT_CARD>&city=Los%20Angeles&country=US&currency=USD&customer_vault=add_customer&cvv=<CVV>&email=jane@example.com&first_name=Jane&last_name=Smith&payment=creditcard&phone=555-555-1234&security_key=<NMI_SECURITY_KEY>&state=CA&test_mode=enabled&zip=90001
     body:
       encoding: US-ASCII
       string: ''
@@ -21,29 +21,26 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 29 Oct 2025 21:12:14 GMT
+      - Thu, 20 Nov 2025 23:30:33 GMT
       Vary:
       - X-Unique-Id
       Content-Type:
       - text/html; charset=UTF-8
       X-Envoy-Upstream-Service-Time:
-      - '508'
-      Set-Cookie:
-      - '068303=DE3GKneWAfygrj7b4BkscAblmhzkbbiKhH3rXFjGeMh2F+wSyK6+vWkxsbt2+a/MSKAt58QGOI1u+yKkLCHDTlDPDJd55LU1UnRoH4QmbUhBce3pXb2hqqalH5paqQZoR0lVUhFl0EtB9RbNtTxbE2szbMnDKiXHndUOEit58rOn1GmF;
-        path=/'
+      - '256'
       X-Volterra-Location:
-      - wes-sea
+      - b-dal3-dal
       Server:
       - volt-adc
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: response=1&responsetext=Customer Added&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=&response_code=100&customer_vault_id=1731137843
-  recorded_at: Wed, 29 Oct 2025 21:12:15 GMT
+      string: response=1&responsetext=Customer Added&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=&response_code=100&customer_vault_id=2057813310
+  recorded_at: Thu, 20 Nov 2025 23:30:33 GMT
 - request:
     method: get
-    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&customer_vault=delete_customer&customer_vault_id=1731137843&payment=creditcard&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&test_mode=enabled
+    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&customer_vault=delete_customer&customer_vault_id=2057813310&payment=creditcard&security_key=<NMI_SECURITY_KEY>&test_mode=enabled
     body:
       encoding: US-ASCII
       string: ''
@@ -62,18 +59,15 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 29 Oct 2025 21:12:15 GMT
+      - Thu, 20 Nov 2025 23:30:34 GMT
       Vary:
       - X-Unique-Id
       Content-Type:
       - text/html; charset=UTF-8
       X-Envoy-Upstream-Service-Time:
-      - '509'
-      Set-Cookie:
-      - '068303=AgAgKgRT5LXJlAz08vv0SQvE8XOcsQULidjPPIHr70jr4z29Cxx0QTB67jlMSoedWAMR086h72a2lbjauYXOIxXmrxWY8p5cN1L8F6fgU5XF6+D2zaZpqoo4d0V0/7S0YOg2vjs0Y4I+q00gsrmOqmflv/JzyZGWEiFM6nWXptTZHLSU;
-        path=/'
+      - '243'
       X-Volterra-Location:
-      - wes-sea
+      - dal3-dal
       Server:
       - volt-adc
       Transfer-Encoding:
@@ -81,5 +75,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: response=1&responsetext=Customer Deleted&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=&response_code=100
-  recorded_at: Wed, 29 Oct 2025 21:12:15 GMT
+  recorded_at: Thu, 20 Nov 2025 23:30:34 GMT
 recorded_with: VCR 6.3.1

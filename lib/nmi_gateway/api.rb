@@ -1,23 +1,30 @@
 module NMIGateway
   class Api
-    TRANSACTION_URL = ENV.fetch("NMI_TRANSACTION_URL", "https://figpay.transactiongateway.com/api/transact.php")
-    QUERY_URL = ENV.fetch("NMI_QUERY_URL", "https://figpay.transactiongateway.com/api/query.php")
     include HTTParty
 
-    attr_accessor :security_key, :query
+    attr_accessor :security_key, :query, :configuration
 
-    def initialize(options = {})
-      @security_key = options[:security_key] || ENV["NMI_SECURITY_KEY"]
+    def initialize(options = {}, configuration = NMIGateway.configuration)
+      @configuration = configuration
+      @security_key = options[:security_key] || configuration.security_key
+    end
+
+    def transaction_url
+      @configuration.transaction_url
+    end
+
+    def query_url
+      @configuration.query_url
     end
 
     def get(options={})
-      response = self.class.get(QUERY_URL, query: options.merge(credentials), timeout: 30, headers: headers)
+      response = self.class.get(query_url, query: options.merge(credentials), timeout: 30, headers: headers)
       api_type = options[:type] || options[:report_type]
       handle_response(response, api_type)
     end
 
     def post(options={})
-      response = self.class.get(TRANSACTION_URL, query: options.merge(credentials), timeout: 30, headers: headers)
+      response = self.class.get(transaction_url, query: options.merge(credentials), timeout: 30, headers: headers)
       api_type = options[:type] || options[:customer_vault]
       handle_response(response, api_type)
     end
@@ -38,7 +45,7 @@ module NMIGateway
 
     def credentials
       creds = {security_key: security_key}
-      creds[:test_mode] = ENV['NMI_TEST_MODE'] if ENV['NMI_TEST_MODE']
+      creds[:test_mode] = configuration.test_mode if configuration.test_mode
       creds
     end
 

@@ -2,13 +2,13 @@ module Fixtures
   # Test credit card data (NMI test cards)
   VALID_VISA = {
     ccnumber: '4111111111111111',
-    ccexp: '1225',
+    ccexp: '1025',
     cvv: '999'
   }.freeze
 
   VALID_MASTERCARD = {
     ccnumber: '5499740000000057',
-    ccexp: '1225',
+    ccexp: '1025',
     cvv: '998'
   }.freeze
 
@@ -66,10 +66,10 @@ module Fixtures
     )
   end
 
-  def self.plan_data(suffix = nil)
-    timestamp = Time.now.to_f.to_s.gsub('.', '')
+  def self.plan_data(suffix = 'default')
+    # timestamp = Time.now.to_i # Unix timestamp for uniqueness
     {
-      plan_id: "test-plan-#{suffix}-#{timestamp}",
+      plan_id: "testing-monthly-plan-#{suffix}",
       plan_name: 'Test Monthly Plan',
       plan_amount: AMOUNTS[:subscription],
       month_frequency: 1,

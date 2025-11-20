@@ -21,32 +21,49 @@ VCR.configure do |config|
   config.hook_into :webmock
   config.default_cassette_options = {
     record: :new_episodes,
-    match_requests_on: [:method, :uri, :body]
+    match_requests_on: [:method, :nmi_matcher]
   }
 
-  # Filter sensitive data
-  config.filter_sensitive_data('<NMI_SECURITY_KEY>') do |interaction|
-    # Filter security key from request body
-    if interaction.request.body
-      match = interaction.request.body.match(/security_key=([^&]+)/)
-      match[1] if match
+  # Custom matcher ignoring dynamic/filtered parameters
+  config.register_request_matcher :nmi_matcher do |r1, r2|
+    u1, u2 = URI.parse(r1.uri), URI.parse(r2.uri)
+    next false unless u1.scheme == u2.scheme && u1.host == u2.host && u1.path == u2.path
+
+    p1 = URI.decode_www_form(u1.query || '').to_h
+    p2 = URI.decode_www_form(u2.query || '').to_h
+
+    # Ignore params that are filtered or dynamic
+    %w[security_key customer_vault_id subscription_id transactionid billing_id].each do |k|
+      p1.delete(k)
+      p2.delete(k)
     end
+
+    p1 == p2
+  end
+
+  # Filter sensitive data from both URI (query params) and request body
+  # The regex captures the value after "security_key=" and match[:value] extracts it
+  config.filter_sensitive_data('<NMI_SECURITY_KEY>') do |interaction|
+    uri_match = interaction.request.uri.to_s.match(/security_key=(?<value>[^&]+)/)
+    body_match = interaction.request.body&.match(/security_key=(?<value>[^&]+)/)
+
+    uri_match ? uri_match[:value] : body_match&.[](:value)
   end
 
   # Filter credit card numbers
   config.filter_sensitive_data('<CREDIT_CARD>') do |interaction|
-    if interaction.request.body
-      match = interaction.request.body.match(/ccnumber=(\d+)/)
-      match[1] if match
-    end
+    uri_match = interaction.request.uri.to_s.match(/ccnumber=(?<value>\d+)/)
+    body_match = interaction.request.body&.match(/ccnumber=(?<value>\d+)/)
+
+    uri_match ? uri_match[:value] : body_match&.[](:value)
   end
 
   # Filter CVV
   config.filter_sensitive_data('<CVV>') do |interaction|
-    if interaction.request.body
-      match = interaction.request.body.match(/cvv=(\d+)/)
-      match[1] if match
-    end
+    uri_match = interaction.request.uri.to_s.match(/cvv=(?<value>\d+)/)
+    body_match = interaction.request.body&.match(/cvv=(?<value>\d+)/)
+
+    uri_match ? uri_match[:value] : body_match&.[](:value)
   end
 
   # Also filter from response bodies

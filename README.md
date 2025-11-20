@@ -38,6 +38,10 @@ The library needs to be configured with your account's security key, which is av
 
 ### Configuration
 
+You can configure the library in two ways:
+
+#### Option 1: Environment Variables
+
 Set your security key as an environment variable:
 
 ```bash
@@ -55,6 +59,22 @@ For testing, you can use the demo account security key:
 ```
 NMI_SECURITY_KEY=6457Thfj624V5r7WUwc5v6a68Zsd6YEm
 ```
+
+#### Option 2: Initializer (Recommended for Rails)
+
+Create an initializer file (e.g., `config/initializers/figpay_gateway.rb`):
+
+```ruby
+FigpayGateway.configure do |config|
+  config.security_key = Rails.application.credentials.dig(:nmi, :security_key)
+  # Optional: customize gateway URLs (defaults shown)
+  # config.transaction_url = 'https://figpay.transactiongateway.com/api/transact.php'
+  # config.query_url = 'https://figpay.transactiongateway.com/api/query.php'
+  # config.test_mode = 'enabled' # Enable test mode
+end
+```
+
+**Note:** You can use either `FigpayGateway.configure` or `NMIGateway.configure` - both work identically. Configuration values set via the initializer take precedence over environment variables.
 
 ### Quick Start
 

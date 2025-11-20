@@ -9,7 +9,7 @@ describe FigpayGateway::Recurring do
   describe '#create_plan' do
     it 'creates a billing plan' do
       VCR.use_cassette('recurring/create_plan_success') do
-        plan_data = Fixtures.plan_data('test1')
+        plan_data = Fixtures.plan_data('success')
         result = @recurring.create_plan(plan_data)
 
         assert result.success?, "Expected plan creation to succeed, but got: #{result.response_text}"
@@ -18,7 +18,7 @@ describe FigpayGateway::Recurring do
 
     it 'creates plan with monthly frequency' do
       VCR.use_cassette('recurring/create_plan_monthly') do
-        plan_data = Fixtures.plan_data('monthly')
+        plan_data = Fixtures.plan_data('monthly-freq')
         result = @recurring.create_plan(plan_data)
 
         assert result.success?
@@ -90,7 +90,7 @@ describe FigpayGateway::Recurring do
     it 'requires valid customer vault ID' do
       VCR.use_cassette('recurring/add_subscription_invalid_customer') do
         # Create a plan
-        plan_data = Fixtures.plan_data('sub2')
+        plan_data = Fixtures.plan_data('invalid-cust')
         plan_result = @recurring.create_plan(plan_data)
         assert plan_result.success?
 

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&day_of_month=1&month_frequency=1&payment=creditcard&plan_amount=29.99&plan_id=test-plan-sub2-1761772364074322&plan_name=Test%20Monthly%20Plan&plan_payments=0&recurring=add_plan&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&test_mode=enabled&type=recurring
+    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&day_of_month=1&month_frequency=1&payment=creditcard&plan_amount=29.99&plan_id=testing-monthly-plan-invalid-cust&plan_name=Test%20Monthly%20Plan&plan_payments=0&recurring=add_plan&security_key=<NMI_SECURITY_KEY>&test_mode=enabled&type=recurring
     body:
       encoding: US-ASCII
       string: ''
@@ -21,18 +21,15 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 29 Oct 2025 21:12:44 GMT
+      - Thu, 20 Nov 2025 23:30:10 GMT
       Vary:
       - X-Unique-Id
       Content-Type:
       - text/html; charset=UTF-8
       X-Envoy-Upstream-Service-Time:
-      - '528'
-      Set-Cookie:
-      - '068303=WjkqFjI9UvrZLCfZTeH5QUDjAcCvKLf8FbCGy8HVpoR6YFLA77QPlV4hdrEtmXCUUVv/CvFnLsgFctVBanvrrD0nNpdeZgz/w/CoBVKJm5lOOdl1w8N7ply/FRO9cMPASFnpnlOBBLZfsrXWtGsJ+yPayCvEplR5aMTN2IVI+EedhmOm;
-        path=/'
+      - '302'
       X-Volterra-Location:
-      - wes-sea
+      - dal3-dal
       Server:
       - volt-adc
       Transfer-Encoding:
@@ -40,10 +37,10 @@ http_interactions:
     body:
       encoding: UTF-8
       string: response=1&responsetext=Plan Added&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=recurring&response_code=100
-  recorded_at: Wed, 29 Oct 2025 21:12:44 GMT
+  recorded_at: Thu, 20 Nov 2025 23:30:10 GMT
 - request:
     method: get
-    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&customer_vault_id=nonexistent-customer&payment=creditcard&plan_id=test-plan-sub2-1761772364074322&recurring=add_subscription&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&test_mode=enabled&type=recurring
+    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&customer_vault_id=nonexistent-customer&payment=creditcard&plan_id=testing-monthly-plan-invalid-cust&recurring=add_subscription&security_key=<NMI_SECURITY_KEY>&test_mode=enabled&type=recurring
     body:
       encoding: US-ASCII
       string: ''
@@ -62,106 +59,21 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 29 Oct 2025 21:12:45 GMT
+      - Thu, 20 Nov 2025 23:30:11 GMT
       Vary:
       - X-Unique-Id
       Content-Type:
       - text/html; charset=UTF-8
       X-Envoy-Upstream-Service-Time:
-      - '441'
-      Set-Cookie:
-      - '068303=K8iPpu4znI/x3HFqsqpSzeboNOL4fWUzQk1+TwDGanaT2PPsHSvq/5i5l9CA6bkYlle5TE9/Df/QMS0r/GUGzEvTYPAHMemkOahAyi+xI3nEQldAMcS/89Oe5w94fU6NnmFwRXE4Js8DjM0X0byEuZyi1PIv1C/ZxOqDO6yhcJ44W/9a;
-        path=/'
+      - '212'
       X-Volterra-Location:
-      - wes-sea
+      - dal3-dal
       Server:
       - volt-adc
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: response=3&responsetext=Invalid Customer Vault ID specified REFID:580719150&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=recurring&response_code=300
-  recorded_at: Wed, 29 Oct 2025 21:12:45 GMT
-- request:
-    method: get
-    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&day_of_month=1&month_frequency=1&payment=creditcard&plan_amount=29.99&plan_id=test-plan-sub2-1761772612777459&plan_name=Test%20Monthly%20Plan&plan_payments=0&recurring=add_plan&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&test_mode=enabled&type=recurring
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - application/xml
-      Accept:
-      - application/xml
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 29 Oct 2025 21:16:53 GMT
-      Vary:
-      - X-Unique-Id
-      Content-Type:
-      - text/html; charset=UTF-8
-      X-Envoy-Upstream-Service-Time:
-      - '477'
-      Set-Cookie:
-      - '068303=K02YSvnK4oCQC42THOW43Rp0aWJcgOSvVXbySo0oNz64yvGgI8hJboE3YXH6sWlRh3ooOy3slVRyZWmWTacJTUe72fg4+TXC2axxk7nkU8llikCIoTCYiNvN7moeVP++BeXlB9QVA661vrsYxj68R+tVrv3N0qLBYt/G5Dbgby6zDont;
-        path=/'
-      X-Volterra-Location:
-      - wes-sea
-      Server:
-      - volt-adc
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: UTF-8
-      string: response=1&responsetext=Plan Added&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=recurring&response_code=100
-  recorded_at: Wed, 29 Oct 2025 21:16:53 GMT
-- request:
-    method: get
-    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&customer_vault_id=nonexistent-customer&payment=creditcard&plan_id=test-plan-sub2-1761772612777459&recurring=add_subscription&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&test_mode=enabled&type=recurring
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - application/xml
-      Accept:
-      - application/xml
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 29 Oct 2025 21:16:53 GMT
-      Vary:
-      - X-Unique-Id
-      Content-Type:
-      - text/html; charset=UTF-8
-      X-Envoy-Upstream-Service-Time:
-      - '503'
-      Set-Cookie:
-      - '068303=93mT1EPxlxK1mY7szfAfkt6jMhlEgXwW6rnYt1y/hf7f3MlK7teNUv20axyDySLyRAYGXsrZ0uAdfJ6R8/kUl2/1l+PlrL8ttAkMrMHxiTvuHErJ8O+IxRND+088GaK1eE7/9/3SgH5N9ubk17MJi6LledbSB/vhkMFOtzXbQIADJJtF;
-        path=/'
-      X-Volterra-Location:
-      - wes-sea
-      Server:
-      - volt-adc
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: UTF-8
-      string: response=3&responsetext=Invalid Customer Vault ID specified REFID:580722342&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=recurring&response_code=300
-  recorded_at: Wed, 29 Oct 2025 21:16:54 GMT
+      string: response=3&responsetext=Invalid Customer Vault ID specified REFID:625756322&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=recurring&response_code=300
+  recorded_at: Thu, 20 Nov 2025 23:30:11 GMT
 recorded_with: VCR 6.3.1

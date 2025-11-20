@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://figpay.transactiongateway.com/api/transact.php?ccexp=1225&ccnumber=4111111111111112&currency=USD&cvv=999&email=john@example.com&first_name=John&last_name=Doe&payment=creditcard&security_key=6457Thfj624V5r7WUwc5v6a68Zsd6YEm&test_mode=enabled&type=validate
+    uri: https://figpay.transactiongateway.com/api/transact.php?ccexp=1025&ccnumber=<CREDIT_CARD>&currency=USD&cvv=<CVV>&email=john@example.com&first_name=John&last_name=Doe&payment=creditcard&security_key=<NMI_SECURITY_KEY>&test_mode=enabled&type=validate
     body:
       encoding: US-ASCII
       string: ''
@@ -21,24 +21,21 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 29 Oct 2025 21:13:14 GMT
+      - Thu, 20 Nov 2025 23:30:36 GMT
       Vary:
       - X-Unique-Id
       Content-Type:
       - text/html; charset=UTF-8
       X-Envoy-Upstream-Service-Time:
-      - '479'
-      Set-Cookie:
-      - '068303=e0V4tqDPe4LVE8rhREmqYyGe3MKrTgkWb6LnwuJ8h+CZzmOYBHb1QPqTqgFgcDaBOOgB1bL72T350e38gzOXahY87m0I6d3h81l/P2iIF3UWYdVmUQXGN41PSgqop7qh1KoDGXwviElA1ZEwESYny0Ng9u3CfQnbueg7yHhmfdYm9kf3;
-        path=/'
+      - '233'
       X-Volterra-Location:
-      - wes-sea
+      - dal3-dal
       Server:
       - volt-adc
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: response=3&responsetext=Invalid Credit Card Number REFID:580719512&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=validate&response_code=300
-  recorded_at: Wed, 29 Oct 2025 21:13:14 GMT
+      string: response=3&responsetext=Invalid Credit Card Number REFID:625756863&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=validate&response_code=300
+  recorded_at: Thu, 20 Nov 2025 23:30:36 GMT
 recorded_with: VCR 6.3.1
