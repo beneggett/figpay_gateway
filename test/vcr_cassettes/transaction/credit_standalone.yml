@@ -38,4 +38,42 @@ http_interactions:
       encoding: UTF-8
       string: response=1&responsetext=SUCCESS&authcode=&transactionid=11386675513&avsresponse=&cvvresponse=&orderid=&type=credit&response_code=100
   recorded_at: Thu, 20 Nov 2025 23:30:33 GMT
+- request:
+    method: get
+    uri: https://figpay.transactiongateway.com/api/transact.php?amount=5.0&ccexp=1025&ccnumber=<CREDIT_CARD>&currency=USD&cvv=<CVV>&email=john@example.com&first_name=John&last_name=Doe&payment=creditcard&security_key=<NMI_SECURITY_KEY>&test_mode=enabled&type=credit
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 21 Nov 2025 05:02:24 GMT
+      Vary:
+      - X-Unique-Id
+      Content-Type:
+      - text/html; charset=UTF-8
+      X-Envoy-Upstream-Service-Time:
+      - '1837'
+      X-Volterra-Location:
+      - dal3-dal
+      Server:
+      - volt-adc
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: response=1&responsetext=SUCCESS&authcode=&transactionid=11387273971&avsresponse=&cvvresponse=&orderid=&type=credit&response_code=100
+  recorded_at: Fri, 21 Nov 2025 05:02:26 GMT
 recorded_with: VCR 6.3.1

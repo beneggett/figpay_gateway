@@ -11,6 +11,12 @@ module NMIGateway
       post query
     end
 
+    # NMIGateway::Recurring.new.list_plans
+    def list_plans(options = {})
+      query = set_query(options)
+      query[:report_type] = 'recurring_plans'
+      get query
+    end
 
     # NMIGateway::Recurring.new.add_subscription_to_plan plan_id: "test-1", customer_vault_id: 664625840
     def add_subscription_to_plan(options = {})

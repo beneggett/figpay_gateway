@@ -34,6 +34,30 @@ describe FigpayGateway::Recurring do
     end
   end
 
+  describe '#list_plans' do
+    it 'retrieves all plans' do
+      skip "Query API may not be supported on demo account"
+
+      VCR.use_cassette('recurring/list_plans') do
+        # Create a plan first to ensure there's at least one
+        plan_id = "test-plan-#{Time.now.to_i}"
+        plan_result = @recurring.create_plan(
+          plan_id: plan_id,
+          plan_name: 'Test Plan for Listing',
+          plan_amount: 19.99,
+          month_frequency: 1,
+          day_of_month: 1
+        )
+        assert plan_result.success?
+
+        # List all plans
+        list_result = @recurring.list_plans
+
+        assert list_result.success?, "Expected plan listing to succeed, but got: #{list_result.response_text}"
+      end
+    end
+  end
+
   describe '#add_subscription_to_plan' do
     it 'subscribes a customer to an existing plan' do
       VCR.use_cassette('recurring/add_subscription_to_plan', record: :all) do

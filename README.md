@@ -329,6 +329,20 @@ plan = recurring.create_plan(
 )
 ```
 
+#### List All Plans
+
+Retrieve all recurring billing plans:
+
+```ruby
+plans = FigpayGateway::Recurring.new.list_plans
+
+if plans.success?
+  puts "Plans retrieved successfully"
+end
+```
+
+**Note:** The Query API may not be available on all accounts. Contact FigPay support if you encounter issues.
+
 #### Subscribe Customer to a Plan
 
 Add a vaulted customer to an existing plan:

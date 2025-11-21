@@ -89,6 +89,10 @@ module NMIGateway
       parsed_response
     end
 
+    def set_recurring_plans
+      parsed_response
+    end
+
     def set_customer_vault
       parsed_response
       if parsed_response && parsed_response['nm_response'] && parsed_response['nm_response']['customer_vault'] && customers = parsed_response['nm_response']['customer_vault']['customer']
