@@ -93,6 +93,7 @@ module NMIGateway
       # Recurring Billing
       query[:recurring]                    = options[:recurring ] # add_subscription
       query[:plan_id]                      = options [:plan_id]
+      query[:current_plan_id]              = options [:current_plan_id] # identifies plan when editing
       query[:plan_name]                    = options [:plan_name]
       query[:plan_payments]                = options [:plan_payments] # 0 until canceled
       query[:plan_amount]                  = options [:plan_amount]

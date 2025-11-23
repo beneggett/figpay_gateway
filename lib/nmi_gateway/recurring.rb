@@ -11,6 +11,15 @@ module NMIGateway
       post query
     end
 
+    # NMIGateway::Recurring.new.edit_plan current_plan_id: "test-1"", plan_name: "Plan Name",, plan_amount: 2.99, month_frequency: 1, day_of_month: 1
+    def edit_plan(options = {})
+      query = set_query(options)
+      query[:recurring] = 'edit_plan'
+      query[:type] = 'recurring'
+      require_fields(:current_plan_id, :month_frequency, :day_of_month)
+      post query
+    end
+
     # NMIGateway::Recurring.new.list_plans
     def list_plans(options = {})
       query = set_query(options)

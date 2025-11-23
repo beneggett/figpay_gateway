@@ -458,7 +458,7 @@ http_interactions:
   recorded_at: Fri, 21 Nov 2025 05:02:28 GMT
 - request:
     method: get
-    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&payment=creditcard&recurring=delete_subscription&security_key=<NMI_SECURITY_KEY>&subscription_id=11387274170&test_mode=enabled&type=recurring
+    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&day_of_month=1&month_frequency=1&payment=creditcard&plan_amount=29.99&plan_id=vcr-test-plan-sub1-176393130965476&plan_name=Test%20Monthly%20Plan&plan_payments=0&recurring=add_plan&security_key=<NMI_SECURITY_KEY>&test_mode=enabled&type=recurring
     body:
       encoding: US-ASCII
       string: ''
@@ -477,26 +477,26 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 21 Nov 2025 05:02:28 GMT
+      - Sun, 23 Nov 2025 20:55:10 GMT
       Vary:
       - X-Unique-Id
       Content-Type:
       - text/html; charset=UTF-8
       X-Envoy-Upstream-Service-Time:
-      - '296'
+      - '768'
       X-Volterra-Location:
-      - b-dal3-dal
+      - sp4-sao
       Server:
       - volt-adc
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: response=1&responsetext=Recurring Transaction Deleted&authcode=&transactionid=11387274170&avsresponse=&cvvresponse=&orderid=&type=recurring&response_code=100&subscription_id=11387274170
-  recorded_at: Fri, 21 Nov 2025 05:02:29 GMT
+      string: response=1&responsetext=Plan Added&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=recurring&response_code=100
+  recorded_at: Sun, 23 Nov 2025 20:55:10 GMT
 - request:
     method: get
-    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&customer_vault=delete_customer&customer_vault_id=1565356784&payment=creditcard&security_key=<NMI_SECURITY_KEY>&test_mode=enabled
+    uri: https://figpay.transactiongateway.com/api/transact.php?address1=456%20Oak%20Ave&ccexp=1025&ccnumber=<CREDIT_CARD>&city=Los%20Angeles&country=US&currency=USD&customer_vault=add_customer&cvv=<CVV>&email=jane@example.com&first_name=Jane&last_name=Smith&payment=creditcard&phone=555-555-1234&security_key=<NMI_SECURITY_KEY>&state=CA&test_mode=enabled&zip=90001
     body:
       encoding: US-ASCII
       string: ''
@@ -515,15 +515,129 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 21 Nov 2025 05:02:29 GMT
+      - Sun, 23 Nov 2025 20:55:12 GMT
       Vary:
       - X-Unique-Id
       Content-Type:
       - text/html; charset=UTF-8
       X-Envoy-Upstream-Service-Time:
-      - '267'
+      - '893'
       X-Volterra-Location:
-      - dal3-dal
+      - sp4-sao
+      Server:
+      - volt-adc
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: response=1&responsetext=Customer Added&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=&response_code=100&customer_vault_id=1843486286
+  recorded_at: Sun, 23 Nov 2025 20:55:12 GMT
+- request:
+    method: get
+    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&customer_vault_id=1843486286&payment=creditcard&plan_id=vcr-test-plan-sub1-176393130965476&recurring=add_subscription&security_key=<NMI_SECURITY_KEY>&test_mode=enabled&type=recurring
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 23 Nov 2025 20:55:13 GMT
+      Vary:
+      - X-Unique-Id
+      Content-Type:
+      - text/html; charset=UTF-8
+      X-Envoy-Upstream-Service-Time:
+      - '812'
+      X-Volterra-Location:
+      - sp4-sao
+      Server:
+      - volt-adc
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: response=1&responsetext=Subscription added&authcode=&transactionid=11396325836&avsresponse=&cvvresponse=&orderid=&type=recurring&response_code=100&customer_vault_id=1843486286&subscription_id=11396325836
+  recorded_at: Sun, 23 Nov 2025 20:55:13 GMT
+- request:
+    method: get
+    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&payment=creditcard&recurring=delete_subscription&security_key=<NMI_SECURITY_KEY>&subscription_id=11396325836&test_mode=enabled&type=recurring
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 23 Nov 2025 20:55:14 GMT
+      Vary:
+      - X-Unique-Id
+      Content-Type:
+      - text/html; charset=UTF-8
+      X-Envoy-Upstream-Service-Time:
+      - '753'
+      X-Volterra-Location:
+      - sp4-sao
+      Server:
+      - volt-adc
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: response=1&responsetext=Recurring Transaction Deleted&authcode=&transactionid=11396325836&avsresponse=&cvvresponse=&orderid=&type=recurring&response_code=100&subscription_id=11396325836
+  recorded_at: Sun, 23 Nov 2025 20:55:14 GMT
+- request:
+    method: get
+    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&customer_vault=delete_customer&customer_vault_id=1843486286&payment=creditcard&security_key=<NMI_SECURITY_KEY>&test_mode=enabled
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 23 Nov 2025 20:55:16 GMT
+      Vary:
+      - X-Unique-Id
+      Content-Type:
+      - text/html; charset=UTF-8
+      X-Envoy-Upstream-Service-Time:
+      - '651'
+      X-Volterra-Location:
+      - sp4-sao
       Server:
       - volt-adc
       Transfer-Encoding:

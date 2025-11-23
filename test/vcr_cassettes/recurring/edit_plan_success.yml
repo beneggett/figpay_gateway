@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&day_of_month=1&month_frequency=1&payment=creditcard&plan_amount=29.99&plan_id=testing-monthly-plan-invalid-cust&plan_name=Test%20Monthly%20Plan&plan_payments=0&recurring=add_plan&security_key=<NMI_SECURITY_KEY>&test_mode=enabled&type=recurring
+    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&day_of_month=1&month_frequency=1&payment=creditcard&plan_amount=29.99&plan_id=testing-monthly-plan-update&plan_name=Test%20Monthly%20Plan&plan_payments=0&recurring=add_plan&security_key=<NMI_SECURITY_KEY>&test_mode=enabled&type=recurring
     body:
       encoding: US-ASCII
       string: ''
@@ -21,15 +21,15 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Nov 2025 23:30:10 GMT
+      - Sun, 23 Nov 2025 20:42:04 GMT
       Vary:
       - X-Unique-Id
       Content-Type:
       - text/html; charset=UTF-8
       X-Envoy-Upstream-Service-Time:
-      - '302'
+      - '800'
       X-Volterra-Location:
-      - dal3-dal
+      - sp4-sao
       Server:
       - volt-adc
       Transfer-Encoding:
@@ -37,10 +37,10 @@ http_interactions:
     body:
       encoding: UTF-8
       string: response=1&responsetext=Plan Added&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=recurring&response_code=100
-  recorded_at: Thu, 20 Nov 2025 23:30:10 GMT
+  recorded_at: Sun, 23 Nov 2025 20:42:04 GMT
 - request:
     method: get
-    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&customer_vault_id=nonexistent-customer&payment=creditcard&plan_id=testing-monthly-plan-invalid-cust&recurring=add_subscription&security_key=<NMI_SECURITY_KEY>&test_mode=enabled&type=recurring
+    uri: https://figpay.transactiongateway.com/api/transact.php?currency=USD&current_plan_id=testing-monthly-plan-update&day_of_month=1&month_frequency=1&payment=creditcard&plan_amount=29.99&plan_name=Updated%20Test%20Plan&recurring=edit_plan&security_key=<NMI_SECURITY_KEY>&test_mode=enabled&type=recurring
     body:
       encoding: US-ASCII
       string: ''
@@ -59,21 +59,21 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Nov 2025 23:30:11 GMT
+      - Sun, 23 Nov 2025 20:42:05 GMT
       Vary:
       - X-Unique-Id
       Content-Type:
       - text/html; charset=UTF-8
       X-Envoy-Upstream-Service-Time:
-      - '212'
+      - '898'
       X-Volterra-Location:
-      - dal3-dal
+      - sp4-sao
       Server:
       - volt-adc
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: response=3&responsetext=Invalid Customer Vault ID specified REFID:625756322&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=recurring&response_code=300
-  recorded_at: Thu, 20 Nov 2025 23:30:11 GMT
+      string: response=1&responsetext=Plan Edit Successful&authcode=&transactionid=&avsresponse=&cvvresponse=&orderid=&type=recurring&response_code=100
+  recorded_at: Sun, 23 Nov 2025 20:42:06 GMT
 recorded_with: VCR 6.3.1
