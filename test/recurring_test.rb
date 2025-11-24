@@ -34,6 +34,27 @@ describe FigpayGateway::Recurring do
     end
   end
 
+  describe '#edit_plan' do
+    it 'updates a billing plan' do
+      VCR.use_cassette('recurring/edit_plan_success') do
+        plan_data = Fixtures.plan_data('update_test')
+        plan_result = @recurring.create_plan(plan_data)
+
+        assert plan_result.success?, "Expected plan creation to succeed, but got: #{plan_result.response_text}"
+
+        update_result = @recurring.edit_plan(
+          current_plan_id: plan_data[:plan_id],
+          plan_name: "Updated Test Plan",
+          plan_amount: 29.99,
+          month_frequency: 1,
+          day_of_month: 1
+        )
+
+        assert update_result.success?, "Expected update to succeed, but got: #{update_result.response_text}"
+      end
+    end
+  end
+
   describe '#list_plans' do
     it 'retrieves all plans' do
       skip "Query API may not be supported on demo account"
